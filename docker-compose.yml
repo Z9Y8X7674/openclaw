@@ -1,15 +1,20 @@
 services:
   openclaw:
     image: ghcr.io/openclaw/openclaw:latest
+
     container_name: openclaw
 
-    ports:
-      - "3000:3000"
+    restart: unless-stopped
+
+    environment:
+      - HOST=0.0.0.0
+
+    expose:
+      - "3000"
+      - "18791"
 
     volumes:
       - openclaw_data:/app/data
-
-    restart: unless-stopped
 
 volumes:
   openclaw_data:
